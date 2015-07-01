@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Appendix</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Appendix</h1>
+
+<p>One-group design:</p>
+
+<pre><code class="r">## Set A
+## Unifrm(0, 1)
+# 1 group
+
+con.int.a&lt;-function(alpha,n,m){
+  set.seed(45)
+  est.var &lt;- replicate(m,
+                     {x &lt;- runif(n)
+                      tau&lt;-sum(abs(x-median(x)))/n
+                      delta&lt;-(mean(x)-median(x))/tau
+                      gamma&lt;-var(x)/tau^2
+                      #gamma&lt;-1.23
+                      (delta^2+gamma-1)/n})
+  tau &lt;- replicate(m,
+                   {x &lt;- runif(n)
+                    sum(abs(x-median(x)))/n})
+
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y&lt;-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## see if it CIs cover true_tau
+
+
+coverage.a&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt((1/12)/1.33)
+
+  ans&lt;-con.int.a(alpha,n,m)
+  L&lt;-(ans[,1]&lt;true_tau)*1
+  U&lt;-(ans[,2]&gt;true_tau)*1
+  count=L*U
+
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+#setA # n=10 # 
+
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=coverage.a(0.1,10,m), alpha_0.05=coverage.a(0.05,10,m),alpha_0.01=coverage.a(0.01,10,m))
+#set A #n=25 
+b&lt;-data.frame(n=25,alpha_0.1=coverage.a(0.1,25,m), alpha_0.05=coverage.a(0.05,25,m),alpha_0.01=coverage.a(0.01,25,m))
+# setA # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=coverage.a(0.1,50,m), alpha_0.05=coverage.a(0.05,50,m),alpha_0.01=coverage.a(0.01,50,m))
+# set A n=200 
+d&lt;-data.frame(n=200,alpha_0.1=coverage.a(0.1,200,m), alpha_0.05=coverage.a(0.05,200,m),alpha_0.01=coverage.a(0.01,200,m))
+setA=rbind(a,b,c,d)
+
+################ set B
+
+con.int.b&lt;-function(alpha,n,m){
+  set.seed(45)
+  est.var &lt;- replicate(m,
+                       {x &lt;- rnorm(n, 0, 1)
+                        tau&lt;-sum(abs(x-median(x)))/n
+                        delta&lt;-(mean(x)-median(x))/tau
+                        gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau &lt;- replicate(m,
+                   {x &lt;- rnorm(n, 0, 1)
+                    sum(abs(x-median(x)))/n})
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y&lt;-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+
+
+coverage.b&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt(1/1.57)
+  ans&lt;-con.int.b(alpha,n,m)
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#set B # n=10 # norm
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=coverage.b(0.1,10,m), alpha_0.5=coverage.b(0.05,10,m),alpha_0.01=coverage.b(0.01,10,m))
+#set B #n=25 # norm
+b&lt;-data.frame(n=25,alpha_0.1=coverage.b(0.1,25,m), alpha_0.5=coverage.b(0.05,25,m),alpha_0.01=coverage.b(0.01,25,m))
+# set B # n=50 # norm
+c&lt;-data.frame(n=50,alpha_0.1=coverage.b(0.1,50,m), alpha_0.5=coverage.b(0.05,50,m),alpha_0.01=coverage.b(0.01,50,m))
+# set B # n=200 # norm
+d&lt;-data.frame(n=200,alpha_0.1=coverage.b(0.1,200,m), alpha_0.5=coverage.b(0.05,200,m),alpha_0.01=coverage.b(0.01,200,m))
+
+setB=rbind(a,b,c,d)
+
+############ set C # t.distrbution
+
+con.int.c&lt;-function(alpha,n,m){
+  set.seed(45)
+  est.var &lt;- replicate(m,
+                       {x &lt;- rt(n,5)
+                        tau&lt;-sum(abs(x-median(x)))/n
+                        delta&lt;-(mean(x)-median(x))/tau
+                        gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau &lt;- replicate(m,
+                   {x &lt;- rt(n,5 )
+                    sum(abs(x-median(x)))/n})
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y&lt;-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+
+
+coverage.c&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt((5/3)/2)
+  ans&lt;-con.int.c(alpha,n,m)
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+
+}
+
+#set C # n=10 # t.dist
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=coverage.c(0.1,10,m), alpha_0.5=coverage.c(0.05,10,m),alpha_0.01=coverage.c(0.01,10,m))
+#set C #n=25 #  t.dist
+b&lt;-data.frame(n=25,alpha_0.1=coverage.c(0.1,25,m), alpha_0.5=coverage.c(0.05,25,m),alpha_0.01=coverage.c(0.01,25,m))
+# set c # n=50 # t.dist
+c&lt;-data.frame(n=50,alpha_0.1=coverage.c(0.1,50,m), alpha_0.5=coverage.c(0.05,50,m),alpha_0.01=coverage.c(0.01,50,m))
+# set c # n=200 # t.dist
+d&lt;-data.frame(n=200,alpha_0.1=coverage.c(0.1,200,m), alpha_0.5=coverage.c(0.05,200,m),alpha_0.01=coverage.c(0.01,200,m))
+setC=rbind(a,b,c,d)
+
+########### set D # rgamma
+
+con.int.d&lt;-function(alpha,n,m){
+  set.seed(45)
+  est.var &lt;- replicate(m,
+                       {x &lt;- rgamma(n,7,1)
+                        tau&lt;-sum(abs(x-median(x)))/n
+                        delta&lt;-(mean(x)-median(x))/tau
+                        gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau &lt;- replicate(m,
+                   {x &lt;- rgamma(n,7,1)
+                    sum(abs(x-median(x)))/n})
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y&lt;-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+
+
+coverage.d&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt(7/1.63)
+  ans&lt;-con.int.d(alpha,n,m)
+
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+
+}
+
+#set D # n=10 # rgamma
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=coverage.d(0.1,10,m), alpha_0.05=coverage.d(0.05,10,m),alpha_0.01=coverage.d(0.01,10,m))
+#set D #n=25 #  rgamma
+b&lt;-data.frame(n=25,alpha_0.1=coverage.d(0.1,25,m), alpha_0.05=coverage.d(0.05,25,m),alpha_0.01=coverage.d(0.01,25,m))
+# set D # n=50 # rgamma
+c&lt;-data.frame(n=50,alpha_0.1=coverage.d(0.1,50,m), alpha_0.05=coverage.d(0.05,50,m),alpha_0.01=coverage.d(0.01,50,m))
+# set D # n=200 # rgamma
+d&lt;-data.frame(n=200,alpha_0.1=coverage.d(0.1,200,m), alpha_0.05=coverage.d(0.05,200,m),alpha_0.01=coverage.d(0.01,200,m))
+setD=rbind(a,b,c,d) 
+
+
+## set E # chi-square(4)
+con.int.e&lt;-function(alpha,n,m){
+  set.seed(45)
+  est.var &lt;- replicate(m,
+                       {x &lt;- rchisq(n,4)
+                        tau&lt;-sum(abs(x-median(x)))/n
+                        delta&lt;-(mean(x)-median(x))/tau
+                        gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau &lt;- replicate(m,
+                 {x &lt;- rchisq(n,4)
+                  sum(abs(x-median(x)))/n})
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y&lt;-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+coverage.e&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt((2*4)/1.81)
+  ans&lt;-con.int.e(alpha,n,m)
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#set E # n=10 
+m=1000
+a&lt;-data.frame(n=10, alpha_0.1=coverage.e(0.1,10,m), alpha_0.5=coverage.e(0.05,10,m),alpha_0.01=coverage.e(0.01,10,m))
+#set E #n=25 
+b&lt;-data.frame(n=25, alpha_0.1=coverage.e(0.1,25,m), alpha_0.5=coverage.e(0.05,25,m),alpha_0.01=coverage.e(0.01,25,m))
+# set E # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=coverage.e(0.1,50,m), alpha_0.5=coverage.e(0.05,50,m),alpha_0.01=coverage.e(0.01,50,m))
+# set E # n=200 
+d&lt;-data.frame(n=200, alpha_0.1=coverage.e(0.1,200,m), alpha_0.5=coverage.e(0.05,200,m),alpha_0.01=coverage.e(0.01,200,m))
+setE=rbind(a,b,c,d)
+</code></pre>
+
+<p>Two-group design:</p>
+
+<pre><code class="r">## uniform and norm
+con.int.ab&lt;-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 &lt;- replicate(m,
+                       {x &lt;- runif(n1)
+                        tau&lt;-sum(abs(x-median(x)))/n1
+                        delta&lt;-(mean(x)-median(x))/tau
+                        gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n1})
+  tau1 &lt;- replicate(m,
+                      {x &lt;- runif(n1)
+                       sum(abs(x-median(x)))/n1})
+
+  est.var2 &lt;- replicate(m,
+                       {x &lt;- rnorm(n2, 0, 1)
+                        tau&lt;-sum(abs(x-median(x)))/n2
+                        delta&lt;-(mean(x)-median(x))/tau
+                        gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n2})
+  tau2 &lt;- replicate(m,
+                    {x &lt;- rnorm(n2, 0, 1)
+                     sum(abs(x-median(x)))/n2})
+  coe&lt;-qnorm(1-alpha/2)
+  c1&lt;-n1/(n1-1)
+  c2&lt;-n2/(n2-1)
+
+  Y&lt;-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+  return(exp(Y))
+}
+
+
+## true_tau
+coverage.ab&lt;-function(alpha,n1,n2,m){
+  true_tau1&lt;-sqrt((1/12)/1.33)
+  true_tau2&lt;-sqrt(1/1.57)
+  true_tau=true_tau1/true_tau2
+  ans&lt;-con.int.ab(alpha,n1,n2,m)
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#setA and B # n=10 
+
+m=1000
+a&lt;-data.frame(n1=10, n2=10,alpha_0.1=coverage.ab(0.1,10,10,m), alpha_0.5=coverage.ab(0.05,10,10,m),alpha_0.01=coverage.ab(0.01,10,10,m))
+b&lt;-data.frame(n1=25, n2=10, alpha_0.1=coverage.ab(0.1,25,10,m), alpha_0.5=coverage.ab(0.05,25,10,m),alpha_0.01=coverage.ab(0.01,25,10,m))
+c&lt;-data.frame(n1=10, n2=25, alpha_0.1=coverage.ab(0.1,10,25,m), alpha_0.5=coverage.ab(0.05,10,25,m),alpha_0.01=coverage.ab(0.01,10,25,m))
+d&lt;-data.frame(n1=25, n2=25,alpha_0.1=coverage.ab(0.1,25,25,m), alpha_0.5=coverage.ab(0.05,25,25,m),alpha_0.01=coverage.ab(0.01,25,25,m))
+e&lt;-data.frame(n1=100,n2=100,alpha_0.1=coverage.ab(0.1,100,100,m), alpha_0.5=coverage.ab(0.05,100,100,m),alpha_0.01=coverage.ab(0.01,100,100,m))
+
+setAB=rbind(a,b,c,d,e)
+
+
+##########3 set B ans Set C (norm ,t-disttrbution)
+con.int.bc&lt;-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 &lt;- replicate(m,
+                        {x &lt;- rnorm(n1, 0, 1)
+                         tau&lt;-sum(abs(x-median(x)))/n1
+                         delta&lt;-(mean(x)-median(x))/tau
+                         gamma&lt;-var(x)/tau^2
+                         (delta^2+gamma-1)/n1})
+  tau1 &lt;- replicate(m,
+                    {x &lt;- rnorm(n1,0,1)
+                     sum(abs(x-median(x)))/n1})
+  est.var2 &lt;- replicate(m,
+                        {x &lt;- rt(n2, 5)
+                         tau&lt;-sum(abs(x-median(x)))/n2
+                         delta&lt;-(mean(x)-median(x))/tau
+                         gamma&lt;-var(x)/tau^2
+                         (delta^2+gamma-1)/n2})
+  tau2 &lt;- replicate(m,
+                    {x &lt;- rt(n2, 5)
+                     sum(abs(x-median(x)))/n2})
+  coe&lt;-qnorm(1-alpha/2)
+  c1&lt;-n1/(n1-1)
+  c2&lt;-n2/(n2-1)
+  Y&lt;-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+  return(exp(Y))
+}
+
+
+## To see if CIS cover true_tau
+coverage.bc&lt;-function(alpha,n1,n2,m){
+  true_tau1&lt;-sqrt(1/1.57)
+  true_tau2&lt;-sqrt((5/3)/2)
+  true_tau=true_tau1/true_tau2
+  ans&lt;-con.int.bc(alpha,n1,n2,m) 
+  ## plug into the function to get confidence interval
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#setB and C # n=10 # rnorm rbeta
+m=1000
+a&lt;-data.frame(n1=10, n2=10,alpha_0.1=coverage.bc(0.1,10,10,m), alpha_0.5=coverage.bc(0.05,10,10,m),alpha_0.01=coverage.bc(0.01,10,10,m))
+b&lt;-data.frame(n1=25, n2=10,alpha_0.1=coverage.bc(0.1,25,10,m), alpha_0.5=coverage.bc(0.05,25,10,m),alpha_0.01=coverage.bc(0.01,25,10,m))
+c&lt;-data.frame(n1=10, n2=25,alpha_0.1=coverage.bc(0.1,10,25,m), alpha_0.5=coverage.bc(0.05,10,25,m),alpha_0.01=coverage.bc(0.01,10,25,m))
+d&lt;-data.frame(n1=25, n2=25,alpha_0.1=coverage.bc(0.1,25,25,m), alpha_0.5=coverage.bc(0.05,25,25,m),alpha_0.01=coverage.bc(0.01,25,25,m))
+e&lt;-data.frame(n1=100, n2=100,alpha_0.1=coverage.bc(0.1,100,100,m), alpha_0.5=coverage.bc(0.05,100,100,m),alpha_0.01=coverage.bc(0.01,100,100,m))
+setBC=rbind(a,b,c,d,e)
+
+
+##########3 set B and Set D (N(0,1) ,Gamma(7,1))
+con.int.bd&lt;-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 &lt;- replicate(m,
+                        {x &lt;- rnorm(n1, 0, 1)
+                         tau&lt;-sum(abs(x-median(x)))/n1
+                         delta&lt;-(mean(x)-median(x))/tau
+                         gamma&lt;-var(x)/tau^2
+                         (delta^2+gamma-1)/n1})
+  tau1 &lt;- replicate(m,
+                    {x &lt;- rnorm(n1,0,1)
+                     sum(abs(x-median(x)))/n1})
+  est.var2 &lt;- replicate(m,
+                        {x &lt;- rgamma(n2, 7,1)
+                         tau&lt;-sum(abs(x-median(x)))/n2
+                         delta&lt;-(mean(x)-median(x))/tau
+                         gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n2})
+  tau2 &lt;- replicate(m,
+                    {x &lt;- rgamma(n2, 7,1)
+                    sum(abs(x-median(x)))/n2})
+                    coe&lt;-qnorm(1-alpha/2)
+c1&lt;-n1/(n1-1)
+c2&lt;-n2/(n2-1)
+Y&lt;-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+return(exp(Y))
+}
+
+
+## To see if CIS cover true_tau
+coverage.bd&lt;-function(alpha,n1,n2,m){
+  true_tau1&lt;-sqrt(1/1.57)
+  true_tau2&lt;-sqrt(7/1.63)
+  true_tau=true_tau1/true_tau2
+  ans&lt;-con.int.bd(alpha,n1,n2,m) ## Confidence Interval
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#setB and D # n=10 # gamma and norm
+m=1000
+a&lt;-data.frame(n1=10, n2=10,alpha_0.1=coverage.bd(0.1,10,10,m), alpha_0.5=coverage.bd(0.05,10,10,m),alpha_0.01=coverage.bd(0.01,10,10,m))
+b&lt;-data.frame(n1=25, n2=10,alpha_0.1=coverage.bd(0.1,25,10,m), alpha_0.5=coverage.bd(0.05,25,10,m),alpha_0.01=coverage.bd(0.01,25,10,m))
+c&lt;-data.frame(n1=10, n2=25,alpha_0.1=coverage.bd(0.1,10,25,m), alpha_0.5=coverage.bd(0.05,10,25,m),alpha_0.01=coverage.bd(0.01,10,25,m))
+d&lt;-data.frame(n1=25, n2=25,alpha_0.1=coverage.bd(0.1,25,25,m), alpha_0.5=coverage.bd(0.05,25,25,m),alpha_0.01=coverage.bd(0.01,25,25,m))
+e&lt;-data.frame(n1=100, n2=100,alpha_0.1=coverage.bd(0.1,100,100,m), alpha_0.5=coverage.bd(0.05,100,100,m),alpha_0.01=coverage.bd(0.01,100,100,m))
+setBD=rbind(a,b,c,d,e)
+
+##################SET D  Set E Gamma(7,1)&amp; Chi-square(4)
+con.int.de&lt;-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 &lt;- replicate(m,
+                        {x &lt;- rgamma(n1, 7, 1)
+                         tau&lt;-sum(abs(x-median(x)))/n1
+                         delta&lt;-(mean(x)-median(x))/tau
+                         gamma&lt;-var(x)/tau^2
+                        (delta^2+gamma-1)/n1})
+  tau1 &lt;- replicate(m,
+                    {x &lt;- rgamma(n1, 7, 1)
+                     sum(abs(x-median(x)))/n1})
+  est.var2 &lt;- replicate(m,
+                        {x &lt;- rchisq(n2, df=4)
+                         tau&lt;-sum(abs(x-median(x)))/n2
+                         delta&lt;-(mean(x)-median(x))/tau
+                         gamma&lt;-var(x)/tau^2
+                         (delta^2+gamma-1)/n2})
+  tau2 &lt;- replicate(m,
+                  {x &lt;- rchisq(n2, df=4)
+                   sum(abs(x-median(x)))/n2})
+coe&lt;-qnorm(1-alpha/2)
+c1&lt;-n1/(n1-1)
+c2&lt;-n2/(n2-1)
+Y&lt;-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+return(exp(Y))
+}
+
+
+## To see if CIS cover true_tau
+coverage.de&lt;-function(alpha,n1,n2,m){
+  true_tau1&lt;-sqrt(7/1.63)
+  true_tau2&lt;-sqrt((2*4)/1.81)
+  true_tau=true_tau1/true_tau2
+  ans&lt;-con.int.de(alpha,n1,n2,m) ## plug into the function to get confidence interval
+  L&lt;-(ans[,1]&lt;=true_tau)*1
+  U&lt;-(ans[,2]&gt;=true_tau)*1
+  count=L*U
+  p&lt;-(sum(count)/m)
+  se&lt;-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5))
+}
+
+m=50000
+a&lt;-data.frame(n1=10, n2=10,alpha_0.1=coverage.de(0.1,10,10,m), alpha_0.05=coverage.de(0.05,10,10,m),alpha_0.01=coverage.de(0.01,10,10,m))
+b&lt;-data.frame(n1=25, n2=10,alpha_0.1=coverage.de(0.1,25,10,m), alpha_0.05=coverage.de(0.05,25,10,m),alpha_0.01=coverage.de(0.01,25,10,m))
+c&lt;-data.frame(n1=10, n2=25,alpha_0.1=coverage.de(0.1,10,25,m), alpha_0.05=coverage.de(0.05,10,25,m),alpha_0.01=coverage.de(0.01,10,25,m))
+d&lt;-data.frame(n1=25, n2=25,alpha_0.1=coverage.de(0.1,25,25,m), alpha_0.05=coverage.de(0.05,25,25,m),alpha_0.01=coverage.de(0.01,25,25,m))
+e&lt;-data.frame(n1=100, n2=100,alpha_0.1=coverage.de(0.1,100,100,m), alpha_0.05=coverage.de(0.05,100,100,m),alpha_0.01=coverage.de(0.01,100,100,m))
+setDE=rbind(a,b,c,d,e)                
+</code></pre>
+
+<p>Table2 :</p>
+
+<pre><code class="r">setA;setB;setC;setD;setE
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  94.00000   96.70000   99.30000
+## Standard.Error   10   0.00751    0.00565    0.00264
+## Coverage.Prob1   25  94.90000   96.80000   99.30000
+## Standard.Error1  25   0.00696    0.00557    0.00264
+## Coverage.Prob2   50  91.30000   95.50000   99.20000
+## Standard.Error2  50   0.00891    0.00656    0.00282
+## Coverage.Prob3  200  91.40000   95.50000   98.90000
+## Standard.Error3 200   0.00887    0.00656    0.00330
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.5 alpha_0.01
+## Coverage.Prob    10  91.00000  96.10000   98.40000
+## Standard.Error   10   0.00905   0.00612    0.00397
+## Coverage.Prob1   25  90.60000  94.60000   98.80000
+## Standard.Error1  25   0.00923   0.00715    0.00344
+## Coverage.Prob2   50  91.40000  96.40000   99.30000
+## Standard.Error2  50   0.00887   0.00589    0.00264
+## Coverage.Prob3  200  89.40000  94.80000   98.90000
+## Standard.Error3 200   0.00973   0.00702    0.00330
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.5 alpha_0.01
+## Coverage.Prob    10  88.20000  93.30000   97.50000
+## Standard.Error   10   0.01020   0.00791    0.00494
+## Coverage.Prob1   25  86.60000  92.70000   98.30000
+## Standard.Error1  25   0.01077   0.00823    0.00409
+## Coverage.Prob2   50  87.80000  93.40000   98.30000
+## Standard.Error2  50   0.01035   0.00785    0.00409
+## Coverage.Prob3  200  82.30000  89.40000   96.50000
+## Standard.Error3 200   0.01207   0.00973    0.00581
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  90.60000   95.00000   98.70000
+## Standard.Error   10   0.00923    0.00689    0.00358
+## Coverage.Prob1   25  90.50000   94.80000   98.00000
+## Standard.Error1  25   0.00927    0.00702    0.00443
+## Coverage.Prob2   50  89.60000   94.60000   99.40000
+## Standard.Error2  50   0.00965    0.00715    0.00244
+## Coverage.Prob3  200  89.70000   94.50000   99.00000
+## Standard.Error3 200   0.00961    0.00721    0.00315
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.5 alpha_0.01
+## Coverage.Prob    10  85.50000  91.90000   97.40000
+## Standard.Error   10   0.01113   0.00863    0.00503
+## Coverage.Prob1   25  87.90000  93.80000   98.40000
+## Standard.Error1  25   0.01031   0.00763    0.00397
+## Coverage.Prob2   50  87.50000  93.20000   98.70000
+## Standard.Error2  50   0.01046   0.00796    0.00358
+## Coverage.Prob3  200  89.80000  94.60000   99.20000
+## Standard.Error3 200   0.00957   0.00715    0.00282
+</code></pre>
+
+<p>Table 3:</p>
+
+<pre><code class="r">setAB;setBC;setBD;setDE
+</code></pre>
+
+<pre><code>##                  n1  n2 alpha_0.1 alpha_0.5 alpha_0.01
+## Coverage.Prob    10  10  93.10000  96.10000   98.90000
+## Standard.Error   10  10   0.00801   0.00612    0.00330
+## Coverage.Prob1   25  10  92.00000  95.70000   98.80000
+## Standard.Error1  25  10   0.00858   0.00641    0.00344
+## Coverage.Prob2   10  25  93.50000  96.20000   99.40000
+## Standard.Error2  10  25   0.00780   0.00605    0.00244
+## Coverage.Prob3   25  25  90.70000  94.60000   99.10000
+## Standard.Error3  25  25   0.00918   0.00715    0.00299
+## Coverage.Prob4  100 100  88.90000  94.60000   98.70000
+## Standard.Error4 100 100   0.00993   0.00715    0.00358
+</code></pre>
+
+<pre><code>##                  n1  n2 alpha_0.1 alpha_0.5 alpha_0.01
+## Coverage.Prob    10  10  90.90000  94.90000   98.50000
+## Standard.Error   10  10   0.00909   0.00696    0.00384
+## Coverage.Prob1   25  10  90.80000  94.80000   98.90000
+## Standard.Error1  25  10   0.00914   0.00702    0.00330
+## Coverage.Prob2   10  25  92.10000  95.00000   98.90000
+## Standard.Error2  10  25   0.00853   0.00689    0.00330
+## Coverage.Prob3   25  25  88.80000  94.90000   98.30000
+## Standard.Error3  25  25   0.00997   0.00696    0.00409
+## Coverage.Prob4  100 100  89.10000  94.30000   98.50000
+## Standard.Error4 100 100   0.00985   0.00733    0.00384
+</code></pre>
+
+<pre><code>##                  n1  n2 alpha_0.1 alpha_0.5 alpha_0.01
+## Coverage.Prob    10  10  92.20000  96.50000   98.90000
+## Standard.Error   10  10   0.00848   0.00581    0.00330
+## Coverage.Prob1   25  10  90.90000  95.60000   99.20000
+## Standard.Error1  25  10   0.00909   0.00649    0.00282
+## Coverage.Prob2   10  25  92.60000  96.40000   98.50000
+## Standard.Error2  10  25   0.00828   0.00589    0.00384
+## Coverage.Prob3   25  25  90.80000  95.60000   99.50000
+## Standard.Error3  25  25   0.00914   0.00649    0.00223
+## Coverage.Prob4  100 100  89.60000  94.80000   99.40000
+## Standard.Error4 100 100   0.00965   0.00702    0.00244
+</code></pre>
+
+<pre><code>##                  n1  n2 alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  10  89.38000   94.23800   98.41200
+## Standard.Error   10  10   0.00138    0.00104    0.00056
+## Coverage.Prob1   25  10  88.29600   93.30400   97.94200
+## Standard.Error1  25  10   0.00144    0.00112    0.00063
+## Coverage.Prob2   10  25  90.28600   94.68800   98.59200
+## Standard.Error2  10  25   0.00132    0.00100    0.00053
+## Coverage.Prob3   25  25  89.59200   94.59000   98.70200
+## Standard.Error3  25  25   0.00137    0.00101    0.00051
+## Coverage.Prob4  100 100  89.89800   94.69000   98.85800
+## Standard.Error4 100 100   0.00135    0.00100    0.00048
+</code></pre>
+
+<p>Variance reduction: </p>
+
+<pre><code class="r">## Set A
+## uniform
+# 1 group
+####Vaiance reduction
+con.int.a&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt((1/12)/1.33)
+  Y1&lt;-matrix(rep(0,m), nrow=m/2); Y2&lt;-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+        u1&lt;-runif(n)
+        u2&lt;-1-u1
+        x1 &lt;- qunif(u1, 0, 1)
+        x2&lt;-qunif(u2,0,1)
+        tau1&lt;-sum(abs(x1-median(x1)))/n 
+        tau2&lt;-sum(abs(x2-median(x2)))/n
+        delta1&lt;-(mean(x1)-median(x1))/tau1
+        delta2&lt;-(mean(x2)-median(x2))/tau2
+        gamma1&lt;-var(x1)/tau1^2
+        gamma2&lt;-var(x2)/tau2^2
+        est.var1&lt;-(delta1^2+gamma1-1)/n
+        est.var2&lt;-(delta2^2+gamma2-1)/n
+
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y1[j,]&lt;-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+  Y2[j,]&lt;-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+
+}
+  L1&lt;-(Y1[,1]&lt;true_tau)*1
+  L2&lt;-(Y2[,1]&lt;true_tau)*1
+  U1&lt;-(Y1[,2]&gt;true_tau)*1
+  U2&lt;-(Y2[,2]&gt;true_tau)*1
+  count1&lt;-L1*U1
+  count2&lt;-L2*U2
+  count=(count1+count2)/2
+  p &lt;- sum(count)/(m/2)
+  se &lt;-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=con.int.a(0.1,10,m), alpha_0.05=con.int.a(0.05,10,m),alpha_0.01=con.int.a(0.01,10,m))
+a#set A #n=25 
+</code></pre>
+
+<pre><code>##                 n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob  10  93.40000   97.80000   99.00000
+## Standard.Error 10   0.00786    0.00464    0.00315
+</code></pre>
+
+<pre><code class="r">b&lt;-data.frame(n=25,alpha_0.1=con.int.a(0.1,25,m), alpha_0.05=con.int.a(0.05,25,m),alpha_0.01=con.int.a(0.01,10,m))
+# setA # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=con.int.a(0.1,50,m), alpha_0.05=con.int.a(0.05,50,m),alpha_0.01=con.int.a(0.01,50,m))
+# set A n=200 
+d&lt;-data.frame(n=200,alpha_0.1=con.int.a(0.1,200,m), alpha_0.05=con.int.a(0.05,200,m),alpha_0.01=con.int.a(0.01,200,m))
+vrsetA=rbind(a,b,c,d)
+################set B
+con.int.b&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt(1/1.57)
+  Y1&lt;-matrix(rep(0,m), nrow=m/2); Y2&lt;-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1&lt;-runif(n)
+    u2&lt;-1-u1
+    x1 &lt;- qnorm(u1, 0, 1)
+    x2&lt;-qnorm(u2,0,1)
+    tau1&lt;-sum(abs(x1-median(x1)))/n 
+    tau2&lt;-sum(abs(x2-median(x2)))/n
+    delta1&lt;-(mean(x1)-median(x1))/tau1
+    delta2&lt;-(mean(x2)-median(x2))/tau2
+    gamma1&lt;-var(x1)/tau1^2
+    gamma2&lt;-var(x2)/tau2^2
+    est.var1&lt;-(delta1^2+gamma1-1)/n
+    est.var2&lt;-(delta2^2+gamma2-1)/n
+
+    coe&lt;-qnorm(1-alpha/2)
+    c&lt;-n/(n-1)
+    Y1[j,]&lt;-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]&lt;-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+
+  }
+  L1&lt;-(Y1[,1]&lt;true_tau)*1
+  L2&lt;-(Y2[,1]&lt;true_tau)*1
+  U1&lt;-(Y1[,2]&gt;true_tau)*1
+  U2&lt;-(Y2[,2]&gt;true_tau)*1
+  count1&lt;-L1*U1
+  count2&lt;-L2*U2
+  count=(count1+count2)/2
+  p &lt;- sum(count)/(m/2)
+  se &lt;-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=con.int.b(0.1,10,m), alpha_0.05=con.int.b(0.05,10,m),alpha_0.01=con.int.b(0.01,10,m))
+a#set A #n=25 
+</code></pre>
+
+<pre><code>##                 n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob  10  91.40000   94.80000   98.20000
+## Standard.Error 10   0.00887    0.00703    0.00421
+</code></pre>
+
+<pre><code class="r">b&lt;-data.frame(n=25,alpha_0.1=con.int.b(0.1,25,m), alpha_0.05=con.int.b(0.05,25,m),alpha_0.01=con.int.b(0.01,10,m))
+# setA # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=con.int.b(0.1,50,m), alpha_0.05=con.int.b(0.05,50,m),alpha_0.01=con.int.b(0.01,50,m))
+# set A n=200 
+d&lt;-data.frame(n=200,alpha_0.1=con.int.b(0.1,200,m), alpha_0.05=con.int.b(0.05,200,m),alpha_0.01=con.int.b(0.01,200,m))
+vrsetB=rbind(a,b,c,d)
+############ set C # t.distrbution
+
+con.int.c&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt((5/3)/2)
+  Y1&lt;-matrix(rep(0,m), nrow=m/2); Y2&lt;-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1&lt;-runif(n)
+    u2&lt;-1-u1
+    x1 &lt;- qt(u1, 5)
+    x2&lt;-qt(u2, 5)
+    tau1&lt;-sum(abs(x1-median(x1)))/n 
+    tau2&lt;-sum(abs(x2-median(x2)))/n
+    delta1&lt;-(mean(x1)-median(x1))/tau1
+    delta2&lt;-(mean(x2)-median(x2))/tau2
+    gamma1&lt;-var(x1)/tau1^2
+    gamma2&lt;-var(x2)/tau2^2
+    est.var1&lt;-(delta1^2+gamma1-1)/n
+    est.var2&lt;-(delta2^2+gamma2-1)/n
+
+    coe&lt;-qnorm(1-alpha/2)
+    c&lt;-n/(n-1)
+    Y1[j,]&lt;-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]&lt;-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+
+  }
+  L1&lt;-(Y1[,1]&lt;true_tau)*1
+  L2&lt;-(Y2[,1]&lt;true_tau)*1
+  U1&lt;-(Y1[,2]&gt;true_tau)*1
+  U2&lt;-(Y2[,2]&gt;true_tau)*1
+  count1&lt;-L1*U1
+  count2&lt;-L2*U2
+  count=(count1+count2)/2
+  p &lt;- sum(count)/(m/2)
+  se &lt;-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=con.int.c(0.1,10,m), alpha_0.05=con.int.c(0.05,10,m),alpha_0.01=con.int.c(0.01,10,m))
+#set A #n=25 
+b&lt;-data.frame(n=25,alpha_0.1=con.int.c(0.1,25,m), alpha_0.05=con.int.c(0.05,25,m),alpha_0.01=con.int.c(0.01,10,m))
+# setA # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=con.int.c(0.1,50,m), alpha_0.05=con.int.c(0.05,50,m),alpha_0.01=con.int.c(0.01,50,m))
+# set A n=200 
+d&lt;-data.frame(n=200,alpha_0.1=con.int.c(0.1,200,m), alpha_0.05=con.int.c(0.05,200,m),alpha_0.01=con.int.c(0.01,200,m))
+vrsetC=rbind(a,b,c,d)
+
+########### set D # rgamma
+con.int.d&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt(7/1.63)
+  Y1&lt;-matrix(rep(0,m), nrow=m/2); Y2&lt;-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1&lt;-runif(n)
+    u2&lt;-1-u1
+    x1 &lt;- qgamma(u1, 7, 1)
+    x2&lt;-qgamma(u2,7,1)
+    tau1&lt;-sum(abs(x1-median(x1)))/n 
+    tau2&lt;-sum(abs(x2-median(x2)))/n
+    delta1&lt;-(mean(x1)-median(x1))/tau1
+    delta2&lt;-(mean(x2)-median(x2))/tau2
+    gamma1&lt;-var(x1)/tau1^2
+    gamma2&lt;-var(x2)/tau2^2
+    est.var1&lt;-(delta1^2+gamma1-1)/n
+    est.var2&lt;-(delta2^2+gamma2-1)/n
+
+    coe&lt;-qnorm(1-alpha/2)
+    c&lt;-n/(n-1)
+    Y1[j,]&lt;-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]&lt;-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+
+  }
+  L1&lt;-(Y1[,1]&lt;true_tau)*1
+  L2&lt;-(Y2[,1]&lt;true_tau)*1
+  U1&lt;-(Y1[,2]&gt;true_tau)*1
+  U2&lt;-(Y2[,2]&gt;true_tau)*1
+  count1&lt;-L1*U1
+  count2&lt;-L2*U2
+  count=(count1+count2)/2
+  p &lt;- sum(count)/(m/2)
+  se &lt;-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=con.int.d(0.1,10,m), alpha_0.05=con.int.d(0.05,10,m),alpha_0.01=con.int.d(0.01,10,m))
+a#set A #n=25 
+</code></pre>
+
+<pre><code>##                 n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob  10  91.30000   94.10000   98.40000
+## Standard.Error 10   0.00775    0.00633    0.00343
+</code></pre>
+
+<pre><code class="r">b&lt;-data.frame(n=25,alpha_0.1=con.int.d(0.1,25,m), alpha_0.05=con.int.d(0.05,25,m),alpha_0.01=con.int.d(0.01,10,m))
+# setA # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=con.int.d(0.1,50,m), alpha_0.05=con.int.d(0.05,50,m),alpha_0.01=con.int.d(0.01,50,m))
+# set A n=200 
+d&lt;-data.frame(n=200,alpha_0.1=con.int.d(0.1,200,m), alpha_0.05=con.int.d(0.05,200,m),alpha_0.01=con.int.d(0.01,200,m))
+vrsetD=rbind(a,b,c,d)
+########## set E # Chi-square
+
+con.int.e&lt;-function(alpha,n,m){
+  true_tau&lt;-sqrt((2*4)/1.81)
+  Y1&lt;-matrix(rep(0,m), nrow=m/2); Y2&lt;-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1&lt;-runif(n)
+    u2&lt;-1-u1
+    x1 &lt;- qchisq(u1, 4)
+    x2&lt;-qchisq(u2, 4)
+    tau1&lt;-sum(abs(x1-median(x1)))/n 
+    tau2&lt;-sum(abs(x2-median(x2)))/n
+    delta1&lt;-(mean(x1)-median(x1))/tau1
+    delta2&lt;-(mean(x2)-median(x2))/tau2
+    gamma1&lt;-var(x1)/tau1^2
+    gamma2&lt;-var(x2)/tau2^2
+    est.var1&lt;-(delta1^2+gamma1-1)/n
+    est.var2&lt;-(delta2^2+gamma2-1)/n
+
+    coe&lt;-qnorm(1-alpha/2)
+    c&lt;-n/(n-1)
+    Y1[j,]&lt;-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]&lt;-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+
+  }
+  L1&lt;-(Y1[,1]&lt;true_tau)*1
+  L2&lt;-(Y2[,1]&lt;true_tau)*1
+  U1&lt;-(Y1[,2]&gt;true_tau)*1
+  U2&lt;-(Y2[,2]&gt;true_tau)*1
+  count1&lt;-L1*U1
+  count2&lt;-L2*U2
+  count=(count1+count2)/2
+  p &lt;- sum(count)/(m/2)
+  se &lt;-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a&lt;-data.frame(n=10,alpha_0.1=con.int.e(0.1,10,m), alpha_0.05=con.int.e(0.05,10,m),alpha_0.01=con.int.e(0.01,10,m))
+#set A #n=25 
+b&lt;-data.frame(n=25,alpha_0.1=con.int.e(0.1,25,m), alpha_0.05=con.int.e(0.05,25,m),alpha_0.01=con.int.e(0.01,10,m))
+# setA # n=50 
+c&lt;-data.frame(n=50, alpha_0.1=con.int.e(0.1,50,m), alpha_0.05=con.int.e(0.05,50,m),alpha_0.01=con.int.e(0.01,50,m))
+# set A n=200 
+d&lt;-data.frame(n=200,alpha_0.1=con.int.e(0.1,200,m), alpha_0.05=con.int.e(0.05,200,m),alpha_0.01=con.int.e(0.01,200,m))
+vrsetE=rbind(a,b,c,d)
+
+vrsetA;vrsetB;vrsetC;vrsetD;vrsetE
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  93.40000   97.80000   99.00000
+## Standard.Error   10   0.00786    0.00464    0.00315
+## Coverage.Prob1   25  94.40000   98.80000   99.60000
+## Standard.Error1  25   0.00728    0.00345    0.00200
+## Coverage.Prob2   50  92.20000   96.60000   99.80000
+## Standard.Error2  50   0.00849    0.00574    0.00141
+## Coverage.Prob3  200  92.20000   96.20000   99.20000
+## Standard.Error3 200   0.00849    0.00605    0.00282
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  91.40000   94.80000   98.20000
+## Standard.Error   10   0.00887    0.00703    0.00421
+## Coverage.Prob1   25  91.60000   95.80000   99.00000
+## Standard.Error1  25   0.00878    0.00635    0.00315
+## Coverage.Prob2   50  87.80000   94.20000   99.00000
+## Standard.Error2  50   0.01036    0.00740    0.00315
+## Coverage.Prob3  200  91.20000   96.20000   98.80000
+## Standard.Error3 200   0.00897    0.00605    0.00345
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  88.60000   94.60000   97.80000
+## Standard.Error   10   0.01006    0.00715    0.00464
+## Coverage.Prob1   25  91.20000   94.20000   98.20000
+## Standard.Error1  25   0.00897    0.00740    0.00421
+## Coverage.Prob2   50  89.40000   92.60000   99.00000
+## Standard.Error2  50   0.00974    0.00829    0.00315
+## Coverage.Prob3  200  85.60000   92.80000   97.80000
+## Standard.Error3 200   0.01111    0.00818    0.00464
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  91.30000   94.10000   98.40000
+## Standard.Error   10   0.00775    0.00633    0.00343
+## Coverage.Prob1   25  86.70000   95.00000   97.80000
+## Standard.Error1  25   0.00889    0.00562    0.00407
+## Coverage.Prob2   50  90.40000   92.30000   99.10000
+## Standard.Error2  50   0.00767    0.00690    0.00233
+## Coverage.Prob3  200  90.90000   94.30000   98.70000
+## Standard.Error3 200   0.00757    0.00577    0.00289
+</code></pre>
+
+<pre><code>##                   n alpha_0.1 alpha_0.05 alpha_0.01
+## Coverage.Prob    10  87.40000   92.00000   97.90000
+## Standard.Error   10   0.00808    0.00614    0.00362
+## Coverage.Prob1   25  87.90000   92.70000   97.20000
+## Standard.Error1  25   0.00768    0.00602    0.00390
+## Coverage.Prob2   50  88.00000   93.20000   98.20000
+## Standard.Error2  50   0.00766    0.00595    0.00327
+## Coverage.Prob3  200  89.10000   93.80000   98.70000
+## Standard.Error3 200   0.00740    0.00559    0.00271
+</code></pre>
+
+<p>Importance Sampling for Chi-sqaure(4)</p>
+
+<pre><code class="r">vrunif&lt;-function(alpha,n){
+  true_tau&lt;-sqrt((2*4)/1.81)
+  ## proposed g(s)
+  x&lt;-rchisq(n,3.3)
+  tau&lt;-sum(abs(x-median(x)))/n
+  delta&lt;-(mean(x)-median(x))/tau
+  gamma&lt;-var(x)/tau^2
+
+  est.var&lt;-(delta^2+gamma-1)/n
+  w&lt;-exp(sum(dchisq(x,4,log=TRUE))-sum(dchisq(x,3.3,log=TRUE)))
+   coe&lt;-qnorm(1-alpha/2)
+   c&lt;-n/(n-1)
+   Y&lt;-exp(cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var)))
+
+U&lt;-1-(true_tau&gt;Y[,2])*w
+L&lt;-1-(true_tau&lt;Y[,1])*w
+accept&lt;-U*L
+return(accept)
+}
+ant&lt;-function(m, alpha,n){
+  ans&lt;-replicate(m, vrunif(alpha,n))
+  p&lt;-round(sum(ans)/m*100, digits=3)
+  se&lt;-round(sd(ans)/sqrt(m),digits=5)
+  rbind(Prob=p,stanard.error=se)
+}
+cbind(ant(1000,0.1,10),ant(1000,0.05,10),ant(1000,0.01,10))
+</code></pre>
+
+<pre><code>##                   [,1]     [,2]     [,3]
+## Prob          85.82700 92.11000 96.46500
+## stanard.error  0.01759  0.01232  0.00892
+</code></pre>
+
+<p>Control Variate for chi-square</p>
+
+<pre><code class="r">cvunif&lt;-function(alpha,n){
+  true_tau&lt;-sqrt((2*4)/1.81)
+  x&lt;-rchisq(n,4)
+  ss&lt;-var(x)
+  u&lt;-mean(x)
+  tau&lt;-sum(abs(x-median(x)))/n
+  delta&lt;-(mean(x)-median(x))/tau
+  gamma&lt;-var(x)/tau^2
+  est.var&lt;-(delta^2+gamma-1)/n
+  coe&lt;-qnorm(1-alpha/2)
+  c&lt;-n/(n-1)
+  Y&lt;-exp(cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var)))
+
+  U&lt;-(true_tau&lt;=Y[,2])
+  L&lt;-(true_tau&gt;=Y[,1])
+  accept&lt;-U*L
+  result&lt;-c(accept,ss)
+  return(result)
+}
+
+cv&lt;-function(m, alpha,n){
+  answ&lt;-replicate(m, cvunif(alpha,n))
+  a&lt;-answ[1,]
+  u&lt;-answ[2,]
+  model&lt;-lm(a~u)
+  beta1&lt;--model$coefficients[2]
+  ans&lt;-a+beta1*(u-8)
+  p&lt;-round(sum(ans)/m*100, digits=3)
+  se&lt;-round(sd(ans)/sqrt(m),digits=5)
+  rbind(p,se,summary(model)$r.squared)
+}
+cbind(cv(1000,0.1,10),cv(1000,0.05,10),cv(1000,0.01,10))
+</code></pre>
+
+<pre><code>##         [,1]      [,2]      [,3]
+## p  86.645000 93.441000 9.689e+01
+## se  0.010760  0.007850 5.480e-03
+##     0.004112  0.001757 2.414e-05
+</code></pre>
+
+</body>
+
+</html>
+

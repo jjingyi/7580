@@ -1,0 +1,768 @@
+Appendix
+========================================================
+
+One-group design:
+
+```{r}
+## Set A
+## Unifrm(0, 1)
+# 1 group
+
+con.int.a<-function(alpha,n,m){
+  set.seed(45)
+  est.var <- replicate(m,
+                     {x <- runif(n)
+                      tau<-sum(abs(x-median(x)))/n
+                      delta<-(mean(x)-median(x))/tau
+                      gamma<-var(x)/tau^2
+                      #gamma<-1.23
+                      (delta^2+gamma-1)/n})
+  tau <- replicate(m,
+                   {x <- runif(n)
+                    sum(abs(x-median(x)))/n})
+  
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y<-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## see if it CIs cover true_tau
+
+
+coverage.a<-function(alpha,n,m){
+  true_tau<-sqrt((1/12)/1.33)
+  
+  ans<-con.int.a(alpha,n,m)
+  L<-(ans[,1]<true_tau)*1
+  U<-(ans[,2]>true_tau)*1
+  count=L*U
+
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+#setA # n=10 # 
+
+m=1000
+a<-data.frame(n=10,alpha_0.1=coverage.a(0.1,10,m), alpha_0.05=coverage.a(0.05,10,m),alpha_0.01=coverage.a(0.01,10,m))
+#set A #n=25 
+b<-data.frame(n=25,alpha_0.1=coverage.a(0.1,25,m), alpha_0.05=coverage.a(0.05,25,m),alpha_0.01=coverage.a(0.01,25,m))
+# setA # n=50 
+c<-data.frame(n=50, alpha_0.1=coverage.a(0.1,50,m), alpha_0.05=coverage.a(0.05,50,m),alpha_0.01=coverage.a(0.01,50,m))
+# set A n=200 
+d<-data.frame(n=200,alpha_0.1=coverage.a(0.1,200,m), alpha_0.05=coverage.a(0.05,200,m),alpha_0.01=coverage.a(0.01,200,m))
+setA=rbind(a,b,c,d)
+
+################ set B
+
+con.int.b<-function(alpha,n,m){
+  set.seed(45)
+  est.var <- replicate(m,
+                       {x <- rnorm(n, 0, 1)
+                        tau<-sum(abs(x-median(x)))/n
+                        delta<-(mean(x)-median(x))/tau
+                        gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau <- replicate(m,
+                   {x <- rnorm(n, 0, 1)
+                    sum(abs(x-median(x)))/n})
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y<-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+
+
+coverage.b<-function(alpha,n,m){
+  true_tau<-sqrt(1/1.57)
+  ans<-con.int.b(alpha,n,m)
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#set B # n=10 # norm
+m=1000
+a<-data.frame(n=10,alpha_0.1=coverage.b(0.1,10,m), alpha_0.5=coverage.b(0.05,10,m),alpha_0.01=coverage.b(0.01,10,m))
+#set B #n=25 # norm
+b<-data.frame(n=25,alpha_0.1=coverage.b(0.1,25,m), alpha_0.5=coverage.b(0.05,25,m),alpha_0.01=coverage.b(0.01,25,m))
+# set B # n=50 # norm
+c<-data.frame(n=50,alpha_0.1=coverage.b(0.1,50,m), alpha_0.5=coverage.b(0.05,50,m),alpha_0.01=coverage.b(0.01,50,m))
+# set B # n=200 # norm
+d<-data.frame(n=200,alpha_0.1=coverage.b(0.1,200,m), alpha_0.5=coverage.b(0.05,200,m),alpha_0.01=coverage.b(0.01,200,m))
+
+setB=rbind(a,b,c,d)
+
+############ set C # t.distrbution
+
+con.int.c<-function(alpha,n,m){
+  set.seed(45)
+  est.var <- replicate(m,
+                       {x <- rt(n,5)
+                        tau<-sum(abs(x-median(x)))/n
+                        delta<-(mean(x)-median(x))/tau
+                        gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau <- replicate(m,
+                   {x <- rt(n,5 )
+                    sum(abs(x-median(x)))/n})
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y<-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+
+
+coverage.c<-function(alpha,n,m){
+  true_tau<-sqrt((5/3)/2)
+  ans<-con.int.c(alpha,n,m)
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+
+}
+
+#set C # n=10 # t.dist
+m=1000
+a<-data.frame(n=10,alpha_0.1=coverage.c(0.1,10,m), alpha_0.5=coverage.c(0.05,10,m),alpha_0.01=coverage.c(0.01,10,m))
+#set C #n=25 #  t.dist
+b<-data.frame(n=25,alpha_0.1=coverage.c(0.1,25,m), alpha_0.5=coverage.c(0.05,25,m),alpha_0.01=coverage.c(0.01,25,m))
+# set c # n=50 # t.dist
+c<-data.frame(n=50,alpha_0.1=coverage.c(0.1,50,m), alpha_0.5=coverage.c(0.05,50,m),alpha_0.01=coverage.c(0.01,50,m))
+# set c # n=200 # t.dist
+d<-data.frame(n=200,alpha_0.1=coverage.c(0.1,200,m), alpha_0.5=coverage.c(0.05,200,m),alpha_0.01=coverage.c(0.01,200,m))
+setC=rbind(a,b,c,d)
+
+########### set D # rgamma
+
+con.int.d<-function(alpha,n,m){
+  set.seed(45)
+  est.var <- replicate(m,
+                       {x <- rgamma(n,7,1)
+                        tau<-sum(abs(x-median(x)))/n
+                        delta<-(mean(x)-median(x))/tau
+                        gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau <- replicate(m,
+                   {x <- rgamma(n,7,1)
+                    sum(abs(x-median(x)))/n})
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y<-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+
+
+coverage.d<-function(alpha,n,m){
+  true_tau<-sqrt(7/1.63)
+  ans<-con.int.d(alpha,n,m)
+  
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+
+}
+
+#set D # n=10 # rgamma
+m=1000
+a<-data.frame(n=10,alpha_0.1=coverage.d(0.1,10,m), alpha_0.05=coverage.d(0.05,10,m),alpha_0.01=coverage.d(0.01,10,m))
+#set D #n=25 #  rgamma
+b<-data.frame(n=25,alpha_0.1=coverage.d(0.1,25,m), alpha_0.05=coverage.d(0.05,25,m),alpha_0.01=coverage.d(0.01,25,m))
+# set D # n=50 # rgamma
+c<-data.frame(n=50,alpha_0.1=coverage.d(0.1,50,m), alpha_0.05=coverage.d(0.05,50,m),alpha_0.01=coverage.d(0.01,50,m))
+# set D # n=200 # rgamma
+d<-data.frame(n=200,alpha_0.1=coverage.d(0.1,200,m), alpha_0.05=coverage.d(0.05,200,m),alpha_0.01=coverage.d(0.01,200,m))
+setD=rbind(a,b,c,d) 
+
+
+## set E # chi-square(4)
+con.int.e<-function(alpha,n,m){
+  set.seed(45)
+  est.var <- replicate(m,
+                       {x <- rchisq(n,4)
+                        tau<-sum(abs(x-median(x)))/n
+                        delta<-(mean(x)-median(x))/tau
+                        gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n})
+  tau <- replicate(m,
+                 {x <- rchisq(n,4)
+                  sum(abs(x-median(x)))/n})
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y<-cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var))
+  return(exp(Y))
+}
+
+## true_tau
+coverage.e<-function(alpha,n,m){
+  true_tau<-sqrt((2*4)/1.81)
+  ans<-con.int.e(alpha,n,m)
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#set E # n=10 
+m=1000
+a<-data.frame(n=10, alpha_0.1=coverage.e(0.1,10,m), alpha_0.5=coverage.e(0.05,10,m),alpha_0.01=coverage.e(0.01,10,m))
+#set E #n=25 
+b<-data.frame(n=25, alpha_0.1=coverage.e(0.1,25,m), alpha_0.5=coverage.e(0.05,25,m),alpha_0.01=coverage.e(0.01,25,m))
+# set E # n=50 
+c<-data.frame(n=50, alpha_0.1=coverage.e(0.1,50,m), alpha_0.5=coverage.e(0.05,50,m),alpha_0.01=coverage.e(0.01,50,m))
+# set E # n=200 
+d<-data.frame(n=200, alpha_0.1=coverage.e(0.1,200,m), alpha_0.5=coverage.e(0.05,200,m),alpha_0.01=coverage.e(0.01,200,m))
+setE=rbind(a,b,c,d)
+
+```
+
+Two-group design:
+
+```{r}
+## uniform and norm
+con.int.ab<-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 <- replicate(m,
+                       {x <- runif(n1)
+                        tau<-sum(abs(x-median(x)))/n1
+                        delta<-(mean(x)-median(x))/tau
+                        gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n1})
+  tau1 <- replicate(m,
+                      {x <- runif(n1)
+                       sum(abs(x-median(x)))/n1})
+
+  est.var2 <- replicate(m,
+                       {x <- rnorm(n2, 0, 1)
+                        tau<-sum(abs(x-median(x)))/n2
+                        delta<-(mean(x)-median(x))/tau
+                        gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n2})
+  tau2 <- replicate(m,
+                    {x <- rnorm(n2, 0, 1)
+                     sum(abs(x-median(x)))/n2})
+  coe<-qnorm(1-alpha/2)
+  c1<-n1/(n1-1)
+  c2<-n2/(n2-1)
+                     
+  Y<-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+  return(exp(Y))
+}
+
+
+## true_tau
+coverage.ab<-function(alpha,n1,n2,m){
+  true_tau1<-sqrt((1/12)/1.33)
+  true_tau2<-sqrt(1/1.57)
+  true_tau=true_tau1/true_tau2
+  ans<-con.int.ab(alpha,n1,n2,m)
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#setA and B # n=10 
+
+m=1000
+a<-data.frame(n1=10, n2=10,alpha_0.1=coverage.ab(0.1,10,10,m), alpha_0.5=coverage.ab(0.05,10,10,m),alpha_0.01=coverage.ab(0.01,10,10,m))
+b<-data.frame(n1=25, n2=10, alpha_0.1=coverage.ab(0.1,25,10,m), alpha_0.5=coverage.ab(0.05,25,10,m),alpha_0.01=coverage.ab(0.01,25,10,m))
+c<-data.frame(n1=10, n2=25, alpha_0.1=coverage.ab(0.1,10,25,m), alpha_0.5=coverage.ab(0.05,10,25,m),alpha_0.01=coverage.ab(0.01,10,25,m))
+d<-data.frame(n1=25, n2=25,alpha_0.1=coverage.ab(0.1,25,25,m), alpha_0.5=coverage.ab(0.05,25,25,m),alpha_0.01=coverage.ab(0.01,25,25,m))
+e<-data.frame(n1=100,n2=100,alpha_0.1=coverage.ab(0.1,100,100,m), alpha_0.5=coverage.ab(0.05,100,100,m),alpha_0.01=coverage.ab(0.01,100,100,m))
+
+setAB=rbind(a,b,c,d,e)
+
+
+##########3 set B ans Set C (norm ,t-disttrbution)
+con.int.bc<-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 <- replicate(m,
+                        {x <- rnorm(n1, 0, 1)
+                         tau<-sum(abs(x-median(x)))/n1
+                         delta<-(mean(x)-median(x))/tau
+                         gamma<-var(x)/tau^2
+                         (delta^2+gamma-1)/n1})
+  tau1 <- replicate(m,
+                    {x <- rnorm(n1,0,1)
+                     sum(abs(x-median(x)))/n1})
+  est.var2 <- replicate(m,
+                        {x <- rt(n2, 5)
+                         tau<-sum(abs(x-median(x)))/n2
+                         delta<-(mean(x)-median(x))/tau
+                         gamma<-var(x)/tau^2
+                         (delta^2+gamma-1)/n2})
+  tau2 <- replicate(m,
+                    {x <- rt(n2, 5)
+                     sum(abs(x-median(x)))/n2})
+  coe<-qnorm(1-alpha/2)
+  c1<-n1/(n1-1)
+  c2<-n2/(n2-1)
+  Y<-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+  return(exp(Y))
+}
+
+
+## To see if CIS cover true_tau
+coverage.bc<-function(alpha,n1,n2,m){
+  true_tau1<-sqrt(1/1.57)
+  true_tau2<-sqrt((5/3)/2)
+  true_tau=true_tau1/true_tau2
+  ans<-con.int.bc(alpha,n1,n2,m) 
+  ## plug into the function to get confidence interval
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#setB and C # n=10 # rnorm rbeta
+m=1000
+a<-data.frame(n1=10, n2=10,alpha_0.1=coverage.bc(0.1,10,10,m), alpha_0.5=coverage.bc(0.05,10,10,m),alpha_0.01=coverage.bc(0.01,10,10,m))
+b<-data.frame(n1=25, n2=10,alpha_0.1=coverage.bc(0.1,25,10,m), alpha_0.5=coverage.bc(0.05,25,10,m),alpha_0.01=coverage.bc(0.01,25,10,m))
+c<-data.frame(n1=10, n2=25,alpha_0.1=coverage.bc(0.1,10,25,m), alpha_0.5=coverage.bc(0.05,10,25,m),alpha_0.01=coverage.bc(0.01,10,25,m))
+d<-data.frame(n1=25, n2=25,alpha_0.1=coverage.bc(0.1,25,25,m), alpha_0.5=coverage.bc(0.05,25,25,m),alpha_0.01=coverage.bc(0.01,25,25,m))
+e<-data.frame(n1=100, n2=100,alpha_0.1=coverage.bc(0.1,100,100,m), alpha_0.5=coverage.bc(0.05,100,100,m),alpha_0.01=coverage.bc(0.01,100,100,m))
+setBC=rbind(a,b,c,d,e)
+
+
+##########3 set B and Set D (N(0,1) ,Gamma(7,1))
+con.int.bd<-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 <- replicate(m,
+                        {x <- rnorm(n1, 0, 1)
+                         tau<-sum(abs(x-median(x)))/n1
+                         delta<-(mean(x)-median(x))/tau
+                         gamma<-var(x)/tau^2
+                         (delta^2+gamma-1)/n1})
+  tau1 <- replicate(m,
+                    {x <- rnorm(n1,0,1)
+                     sum(abs(x-median(x)))/n1})
+  est.var2 <- replicate(m,
+                        {x <- rgamma(n2, 7,1)
+                         tau<-sum(abs(x-median(x)))/n2
+                         delta<-(mean(x)-median(x))/tau
+                         gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n2})
+  tau2 <- replicate(m,
+                    {x <- rgamma(n2, 7,1)
+                    sum(abs(x-median(x)))/n2})
+                    coe<-qnorm(1-alpha/2)
+c1<-n1/(n1-1)
+c2<-n2/(n2-1)
+Y<-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+return(exp(Y))
+}
+
+
+## To see if CIS cover true_tau
+coverage.bd<-function(alpha,n1,n2,m){
+  true_tau1<-sqrt(1/1.57)
+  true_tau2<-sqrt(7/1.63)
+  true_tau=true_tau1/true_tau2
+  ans<-con.int.bd(alpha,n1,n2,m) ## Confidence Interval
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+#setB and D # n=10 # gamma and norm
+m=1000
+a<-data.frame(n1=10, n2=10,alpha_0.1=coverage.bd(0.1,10,10,m), alpha_0.5=coverage.bd(0.05,10,10,m),alpha_0.01=coverage.bd(0.01,10,10,m))
+b<-data.frame(n1=25, n2=10,alpha_0.1=coverage.bd(0.1,25,10,m), alpha_0.5=coverage.bd(0.05,25,10,m),alpha_0.01=coverage.bd(0.01,25,10,m))
+c<-data.frame(n1=10, n2=25,alpha_0.1=coverage.bd(0.1,10,25,m), alpha_0.5=coverage.bd(0.05,10,25,m),alpha_0.01=coverage.bd(0.01,10,25,m))
+d<-data.frame(n1=25, n2=25,alpha_0.1=coverage.bd(0.1,25,25,m), alpha_0.5=coverage.bd(0.05,25,25,m),alpha_0.01=coverage.bd(0.01,25,25,m))
+e<-data.frame(n1=100, n2=100,alpha_0.1=coverage.bd(0.1,100,100,m), alpha_0.5=coverage.bd(0.05,100,100,m),alpha_0.01=coverage.bd(0.01,100,100,m))
+setBD=rbind(a,b,c,d,e)
+
+##################SET D  Set E Gamma(7,1)& Chi-square(4)
+con.int.de<-function(alpha,n1,n2,m){
+  set.seed(1990)
+  est.var1 <- replicate(m,
+                        {x <- rgamma(n1, 7, 1)
+                         tau<-sum(abs(x-median(x)))/n1
+                         delta<-(mean(x)-median(x))/tau
+                         gamma<-var(x)/tau^2
+                        (delta^2+gamma-1)/n1})
+  tau1 <- replicate(m,
+                    {x <- rgamma(n1, 7, 1)
+                     sum(abs(x-median(x)))/n1})
+  est.var2 <- replicate(m,
+                        {x <- rchisq(n2, df=4)
+                         tau<-sum(abs(x-median(x)))/n2
+                         delta<-(mean(x)-median(x))/tau
+                         gamma<-var(x)/tau^2
+                         (delta^2+gamma-1)/n2})
+  tau2 <- replicate(m,
+                  {x <- rchisq(n2, df=4)
+                   sum(abs(x-median(x)))/n2})
+coe<-qnorm(1-alpha/2)
+c1<-n1/(n1-1)
+c2<-n2/(n2-1)
+Y<-cbind(log((c1*tau1)/(c2*tau2))-coe*sqrt(est.var1+est.var2), log((c1*tau1)/(c2*tau2))+coe*sqrt(est.var1+est.var2))
+return(exp(Y))
+}
+
+
+## To see if CIS cover true_tau
+coverage.de<-function(alpha,n1,n2,m){
+  true_tau1<-sqrt(7/1.63)
+  true_tau2<-sqrt((2*4)/1.81)
+  true_tau=true_tau1/true_tau2
+  ans<-con.int.de(alpha,n1,n2,m) ## plug into the function to get confidence interval
+  L<-(ans[,1]<=true_tau)*1
+  U<-(ans[,2]>=true_tau)*1
+  count=L*U
+  p<-(sum(count)/m)
+  se<-sqrt(p*(1-p)/m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5))
+}
+
+m=50000
+a<-data.frame(n1=10, n2=10,alpha_0.1=coverage.de(0.1,10,10,m), alpha_0.05=coverage.de(0.05,10,10,m),alpha_0.01=coverage.de(0.01,10,10,m))
+b<-data.frame(n1=25, n2=10,alpha_0.1=coverage.de(0.1,25,10,m), alpha_0.05=coverage.de(0.05,25,10,m),alpha_0.01=coverage.de(0.01,25,10,m))
+c<-data.frame(n1=10, n2=25,alpha_0.1=coverage.de(0.1,10,25,m), alpha_0.05=coverage.de(0.05,10,25,m),alpha_0.01=coverage.de(0.01,10,25,m))
+d<-data.frame(n1=25, n2=25,alpha_0.1=coverage.de(0.1,25,25,m), alpha_0.05=coverage.de(0.05,25,25,m),alpha_0.01=coverage.de(0.01,25,25,m))
+e<-data.frame(n1=100, n2=100,alpha_0.1=coverage.de(0.1,100,100,m), alpha_0.05=coverage.de(0.05,100,100,m),alpha_0.01=coverage.de(0.01,100,100,m))
+setDE=rbind(a,b,c,d,e)                
+```
+
+Table2 :
+```{r}
+setA;setB;setC;setD;setE
+```
+
+Table 3:
+```{r}
+setAB;setBC;setBD;setDE
+```
+
+Variance reduction: 
+
+```{r}
+## Set A
+## uniform
+# 1 group
+####Vaiance reduction
+con.int.a<-function(alpha,n,m){
+  true_tau<-sqrt((1/12)/1.33)
+  Y1<-matrix(rep(0,m), nrow=m/2); Y2<-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+        u1<-runif(n)
+        u2<-1-u1
+        x1 <- qunif(u1, 0, 1)
+        x2<-qunif(u2,0,1)
+        tau1<-sum(abs(x1-median(x1)))/n 
+        tau2<-sum(abs(x2-median(x2)))/n
+        delta1<-(mean(x1)-median(x1))/tau1
+        delta2<-(mean(x2)-median(x2))/tau2
+        gamma1<-var(x1)/tau1^2
+        gamma2<-var(x2)/tau2^2
+        est.var1<-(delta1^2+gamma1-1)/n
+        est.var2<-(delta2^2+gamma2-1)/n
+
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y1[j,]<-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+  Y2[j,]<-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+  
+}
+  L1<-(Y1[,1]<true_tau)*1
+  L2<-(Y2[,1]<true_tau)*1
+  U1<-(Y1[,2]>true_tau)*1
+  U2<-(Y2[,2]>true_tau)*1
+  count1<-L1*U1
+  count2<-L2*U2
+  count=(count1+count2)/2
+  p <- sum(count)/(m/2)
+  se <-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a<-data.frame(n=10,alpha_0.1=con.int.a(0.1,10,m), alpha_0.05=con.int.a(0.05,10,m),alpha_0.01=con.int.a(0.01,10,m))
+a#set A #n=25 
+b<-data.frame(n=25,alpha_0.1=con.int.a(0.1,25,m), alpha_0.05=con.int.a(0.05,25,m),alpha_0.01=con.int.a(0.01,10,m))
+# setA # n=50 
+c<-data.frame(n=50, alpha_0.1=con.int.a(0.1,50,m), alpha_0.05=con.int.a(0.05,50,m),alpha_0.01=con.int.a(0.01,50,m))
+# set A n=200 
+d<-data.frame(n=200,alpha_0.1=con.int.a(0.1,200,m), alpha_0.05=con.int.a(0.05,200,m),alpha_0.01=con.int.a(0.01,200,m))
+vrsetA=rbind(a,b,c,d)
+################set B
+con.int.b<-function(alpha,n,m){
+  true_tau<-sqrt(1/1.57)
+  Y1<-matrix(rep(0,m), nrow=m/2); Y2<-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1<-runif(n)
+    u2<-1-u1
+    x1 <- qnorm(u1, 0, 1)
+    x2<-qnorm(u2,0,1)
+    tau1<-sum(abs(x1-median(x1)))/n 
+    tau2<-sum(abs(x2-median(x2)))/n
+    delta1<-(mean(x1)-median(x1))/tau1
+    delta2<-(mean(x2)-median(x2))/tau2
+    gamma1<-var(x1)/tau1^2
+    gamma2<-var(x2)/tau2^2
+    est.var1<-(delta1^2+gamma1-1)/n
+    est.var2<-(delta2^2+gamma2-1)/n
+    
+    coe<-qnorm(1-alpha/2)
+    c<-n/(n-1)
+    Y1[j,]<-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]<-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+    
+  }
+  L1<-(Y1[,1]<true_tau)*1
+  L2<-(Y2[,1]<true_tau)*1
+  U1<-(Y1[,2]>true_tau)*1
+  U2<-(Y2[,2]>true_tau)*1
+  count1<-L1*U1
+  count2<-L2*U2
+  count=(count1+count2)/2
+  p <- sum(count)/(m/2)
+  se <-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a<-data.frame(n=10,alpha_0.1=con.int.b(0.1,10,m), alpha_0.05=con.int.b(0.05,10,m),alpha_0.01=con.int.b(0.01,10,m))
+a#set A #n=25 
+b<-data.frame(n=25,alpha_0.1=con.int.b(0.1,25,m), alpha_0.05=con.int.b(0.05,25,m),alpha_0.01=con.int.b(0.01,10,m))
+# setA # n=50 
+c<-data.frame(n=50, alpha_0.1=con.int.b(0.1,50,m), alpha_0.05=con.int.b(0.05,50,m),alpha_0.01=con.int.b(0.01,50,m))
+# set A n=200 
+d<-data.frame(n=200,alpha_0.1=con.int.b(0.1,200,m), alpha_0.05=con.int.b(0.05,200,m),alpha_0.01=con.int.b(0.01,200,m))
+vrsetB=rbind(a,b,c,d)
+############ set C # t.distrbution
+
+con.int.c<-function(alpha,n,m){
+  true_tau<-sqrt((5/3)/2)
+  Y1<-matrix(rep(0,m), nrow=m/2); Y2<-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1<-runif(n)
+    u2<-1-u1
+    x1 <- qt(u1, 5)
+    x2<-qt(u2, 5)
+    tau1<-sum(abs(x1-median(x1)))/n 
+    tau2<-sum(abs(x2-median(x2)))/n
+    delta1<-(mean(x1)-median(x1))/tau1
+    delta2<-(mean(x2)-median(x2))/tau2
+    gamma1<-var(x1)/tau1^2
+    gamma2<-var(x2)/tau2^2
+    est.var1<-(delta1^2+gamma1-1)/n
+    est.var2<-(delta2^2+gamma2-1)/n
+    
+    coe<-qnorm(1-alpha/2)
+    c<-n/(n-1)
+    Y1[j,]<-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]<-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+    
+  }
+  L1<-(Y1[,1]<true_tau)*1
+  L2<-(Y2[,1]<true_tau)*1
+  U1<-(Y1[,2]>true_tau)*1
+  U2<-(Y2[,2]>true_tau)*1
+  count1<-L1*U1
+  count2<-L2*U2
+  count=(count1+count2)/2
+  p <- sum(count)/(m/2)
+  se <-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a<-data.frame(n=10,alpha_0.1=con.int.c(0.1,10,m), alpha_0.05=con.int.c(0.05,10,m),alpha_0.01=con.int.c(0.01,10,m))
+#set A #n=25 
+b<-data.frame(n=25,alpha_0.1=con.int.c(0.1,25,m), alpha_0.05=con.int.c(0.05,25,m),alpha_0.01=con.int.c(0.01,10,m))
+# setA # n=50 
+c<-data.frame(n=50, alpha_0.1=con.int.c(0.1,50,m), alpha_0.05=con.int.c(0.05,50,m),alpha_0.01=con.int.c(0.01,50,m))
+# set A n=200 
+d<-data.frame(n=200,alpha_0.1=con.int.c(0.1,200,m), alpha_0.05=con.int.c(0.05,200,m),alpha_0.01=con.int.c(0.01,200,m))
+vrsetC=rbind(a,b,c,d)
+
+########### set D # rgamma
+con.int.d<-function(alpha,n,m){
+  true_tau<-sqrt(7/1.63)
+  Y1<-matrix(rep(0,m), nrow=m/2); Y2<-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1<-runif(n)
+    u2<-1-u1
+    x1 <- qgamma(u1, 7, 1)
+    x2<-qgamma(u2,7,1)
+    tau1<-sum(abs(x1-median(x1)))/n 
+    tau2<-sum(abs(x2-median(x2)))/n
+    delta1<-(mean(x1)-median(x1))/tau1
+    delta2<-(mean(x2)-median(x2))/tau2
+    gamma1<-var(x1)/tau1^2
+    gamma2<-var(x2)/tau2^2
+    est.var1<-(delta1^2+gamma1-1)/n
+    est.var2<-(delta2^2+gamma2-1)/n
+    
+    coe<-qnorm(1-alpha/2)
+    c<-n/(n-1)
+    Y1[j,]<-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]<-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+    
+  }
+  L1<-(Y1[,1]<true_tau)*1
+  L2<-(Y2[,1]<true_tau)*1
+  U1<-(Y1[,2]>true_tau)*1
+  U2<-(Y2[,2]>true_tau)*1
+  count1<-L1*U1
+  count2<-L2*U2
+  count=(count1+count2)/2
+  p <- sum(count)/(m/2)
+  se <-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a<-data.frame(n=10,alpha_0.1=con.int.d(0.1,10,m), alpha_0.05=con.int.d(0.05,10,m),alpha_0.01=con.int.d(0.01,10,m))
+a#set A #n=25 
+b<-data.frame(n=25,alpha_0.1=con.int.d(0.1,25,m), alpha_0.05=con.int.d(0.05,25,m),alpha_0.01=con.int.d(0.01,10,m))
+# setA # n=50 
+c<-data.frame(n=50, alpha_0.1=con.int.d(0.1,50,m), alpha_0.05=con.int.d(0.05,50,m),alpha_0.01=con.int.d(0.01,50,m))
+# set A n=200 
+d<-data.frame(n=200,alpha_0.1=con.int.d(0.1,200,m), alpha_0.05=con.int.d(0.05,200,m),alpha_0.01=con.int.d(0.01,200,m))
+vrsetD=rbind(a,b,c,d)
+########## set E # Chi-square
+
+con.int.e<-function(alpha,n,m){
+  true_tau<-sqrt((2*4)/1.81)
+  Y1<-matrix(rep(0,m), nrow=m/2); Y2<-matrix(rep(0,m), nrow=m/2)
+  for (j in 1:(m/2)){
+    u1<-runif(n)
+    u2<-1-u1
+    x1 <- qchisq(u1, 4)
+    x2<-qchisq(u2, 4)
+    tau1<-sum(abs(x1-median(x1)))/n 
+    tau2<-sum(abs(x2-median(x2)))/n
+    delta1<-(mean(x1)-median(x1))/tau1
+    delta2<-(mean(x2)-median(x2))/tau2
+    gamma1<-var(x1)/tau1^2
+    gamma2<-var(x2)/tau2^2
+    est.var1<-(delta1^2+gamma1-1)/n
+    est.var2<-(delta2^2+gamma2-1)/n
+    
+    coe<-qnorm(1-alpha/2)
+    c<-n/(n-1)
+    Y1[j,]<-exp(cbind(log(c*tau1)-coe*sqrt(est.var1), log(c*tau1)+coe*sqrt(est.var1)))
+    Y2[j,]<-exp(cbind(log(c*tau2)-coe*sqrt(est.var2), log(c*tau2)+coe*sqrt(est.var2)))
+    
+  }
+  L1<-(Y1[,1]<true_tau)*1
+  L2<-(Y2[,1]<true_tau)*1
+  U1<-(Y1[,2]>true_tau)*1
+  U2<-(Y2[,2]>true_tau)*1
+  count1<-L1*U1
+  count2<-L2*U2
+  count=(count1+count2)/2
+  p <- sum(count)/(m/2)
+  se <-sd(count)/sqrt(m)
+  rbind(Coverage.Prob=p*100, Standard.Error=round(se, digits=5) )
+}
+
+m=1000
+a<-data.frame(n=10,alpha_0.1=con.int.e(0.1,10,m), alpha_0.05=con.int.e(0.05,10,m),alpha_0.01=con.int.e(0.01,10,m))
+#set A #n=25 
+b<-data.frame(n=25,alpha_0.1=con.int.e(0.1,25,m), alpha_0.05=con.int.e(0.05,25,m),alpha_0.01=con.int.e(0.01,10,m))
+# setA # n=50 
+c<-data.frame(n=50, alpha_0.1=con.int.e(0.1,50,m), alpha_0.05=con.int.e(0.05,50,m),alpha_0.01=con.int.e(0.01,50,m))
+# set A n=200 
+d<-data.frame(n=200,alpha_0.1=con.int.e(0.1,200,m), alpha_0.05=con.int.e(0.05,200,m),alpha_0.01=con.int.e(0.01,200,m))
+vrsetE=rbind(a,b,c,d)
+
+vrsetA;vrsetB;vrsetC;vrsetD;vrsetE
+```
+
+Importance Sampling for Chi-sqaure(4)
+```{r}
+vrunif<-function(alpha,n){
+  true_tau<-sqrt((2*4)/1.81)
+  ## proposed g(s)
+  x<-rchisq(n,3.3)
+  tau<-sum(abs(x-median(x)))/n
+  delta<-(mean(x)-median(x))/tau
+  gamma<-var(x)/tau^2
+
+  est.var<-(delta^2+gamma-1)/n
+  w<-exp(sum(dchisq(x,4,log=TRUE))-sum(dchisq(x,3.3,log=TRUE)))
+   coe<-qnorm(1-alpha/2)
+   c<-n/(n-1)
+   Y<-exp(cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var)))
+
+U<-1-(true_tau>Y[,2])*w
+L<-1-(true_tau<Y[,1])*w
+accept<-U*L
+return(accept)
+}
+ant<-function(m, alpha,n){
+  ans<-replicate(m, vrunif(alpha,n))
+  p<-round(sum(ans)/m*100, digits=3)
+  se<-round(sd(ans)/sqrt(m),digits=5)
+  rbind(Prob=p,stanard.error=se)
+}
+cbind(ant(1000,0.1,10),ant(1000,0.05,10),ant(1000,0.01,10))
+```
+
+Control Variate for chi-square
+
+```{r}
+cvunif<-function(alpha,n){
+  true_tau<-sqrt((2*4)/1.81)
+  x<-rchisq(n,4)
+  ss<-var(x)
+  u<-mean(x)
+  tau<-sum(abs(x-median(x)))/n
+  delta<-(mean(x)-median(x))/tau
+  gamma<-var(x)/tau^2
+  est.var<-(delta^2+gamma-1)/n
+  coe<-qnorm(1-alpha/2)
+  c<-n/(n-1)
+  Y<-exp(cbind(log(c*tau)-coe*sqrt(est.var), log(c*tau)+coe*sqrt(est.var)))
+  
+  U<-(true_tau<=Y[,2])
+  L<-(true_tau>=Y[,1])
+  accept<-U*L
+  result<-c(accept,ss)
+  return(result)
+}
+
+cv<-function(m, alpha,n){
+  answ<-replicate(m, cvunif(alpha,n))
+  a<-answ[1,]
+  u<-answ[2,]
+  model<-lm(a~u)
+  beta1<--model$coefficients[2]
+  ans<-a+beta1*(u-8)
+  p<-round(sum(ans)/m*100, digits=3)
+  se<-round(sd(ans)/sqrt(m),digits=5)
+  rbind(p,se,summary(model)$r.squared)
+}
+cbind(cv(1000,0.1,10),cv(1000,0.05,10),cv(1000,0.01,10))
